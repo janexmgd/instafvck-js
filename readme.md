@@ -10,9 +10,11 @@
 
 ##### 1.get Cookie from your web broswer use copy cookies extension
 
-##### 2.make folder tmp at root folder
+#### 2.make file cookie.js see example cookie.example at utils folder, insert your cookie from step 1
 
-##### 3.
+##### 3.make folder tmp at root folder
+
+##### 4.
 
 ```bash
 node index
