@@ -24,3 +24,5 @@ node index
 
 this project is inspired by
 https://siongui.github.io/2018/02/13/go-get-all-post-url-of-instagram-user/
+
+Dont forget to star this project
