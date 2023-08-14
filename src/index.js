@@ -4,6 +4,7 @@ import chalk from 'chalk';
 import inquirer from 'inquirer';
 export const runner = async () => {
   clear();
+  console.clear()
   //   console.log(chalk.underline(`ＩｎｓｔａＦｖｃｋ`));
   console.log(
     chalk.red(`
