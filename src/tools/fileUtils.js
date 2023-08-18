@@ -1,6 +1,6 @@
 import chalk from 'chalk';
 import fs from 'fs/promises';
-import fsNonProm from 'fs'
+import fsNonProm from 'fs';
 import path from 'path';
 
 export const checkFolderExists = async (folderPath) => {
@@ -51,9 +51,9 @@ const createFile = async (filePath, data) => {
 };
 export const checkIsExist = (filename, username) => {
   try {
-    const currentFilePath = new URL(import.meta.url).pathname;
-    const currentDir = path.dirname(currentFilePath);
-    const filePath = path.join(currentDir, `../../tmp/${username}/${filename}`);
+    // const currentFilePath = new URL(import.meta.url).pathname;
+    const currentDir = process.cwd();
+    const filePath = path.resolve(currentDir, 'tmp', username, filename);
     const checkFile = fsNonProm.existsSync(filePath);
     if (checkFile) {
       return true;
@@ -66,9 +66,9 @@ export const checkIsExist = (filename, username) => {
   }
 };
 export const createJson = async (username, data) => {
-  const currentFilePath = new URL(import.meta.url).pathname;
-  const currentDir = path.dirname(currentFilePath);
-  const folderPath = path.join(currentDir, '../../tmp', username);
+  // const currentFilePath = new URL(import.meta.url).pathname;
+  const currentDir = process.cwd();
+  const folderPath = path.join(`${currentDir}`, 'tmp', `${username}`);
   const filePath = path.join(folderPath, `${username}.json`);
   await checkFolderExists(folderPath);
   await createFile(filePath, data);

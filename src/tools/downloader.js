@@ -6,9 +6,9 @@ import fsPromise from 'fs/promises';
 import path from 'path';
 const readJsonFile = async (username) => {
   try {
-    const currentFilePath = new URL(import.meta.url).pathname;
-    const currentDir = path.dirname(currentFilePath);
-    const filePath = path.join(currentDir, `../../tmp/${username}`);
+    // const currentFilePath = new URL(import.meta.url).pathname;
+    const currentDir = process.cwd();
+    const filePath = path.join(currentDir, 'tmp', username);
     const data = await fsPromise.readFile(
       `${filePath}/${username}.json`,
       'utf8'
@@ -21,9 +21,9 @@ const readJsonFile = async (username) => {
 };
 const checkIsDownloaded = (filename, username) => {
   try {
-    const currentFilePath = new URL(import.meta.url).pathname;
-    const currentDir = path.dirname(currentFilePath);
-    const filePath = path.join(currentDir, `../../tmp/${username}/${filename}`);
+    // const currentFilePath = new URL(import.meta.url).pathname;
+    const currentDir = process.cwd();
+    const filePath = path.join(currentDir, 'tmp', username, filename);
     const checkFile = fs.existsSync(filePath);
     if (checkFile) {
       return true;
@@ -45,9 +45,9 @@ const doDownload = async (url, username, lengthOfMedia, current) => {
     // file is already exist
     const isAlready = checkIsDownloaded(filename, username);
     // folder path
-    const currentFilePath = new URL(import.meta.url).pathname;
-    const currentDir = path.dirname(currentFilePath);
-    const folderPath = path.join(currentDir, `../../tmp/${username}`);
+    // const currentFilePath = new URL(import.meta.url).pathname;
+    const currentDir = process.cwd();
+    const folderPath = path.join(currentDir, 'tmp', username);
     if (isAlready == true) {
       console.log(
         `${chalk.italic(filename)} already ${chalk.green(
@@ -84,11 +84,9 @@ const bulkDownloader = async (username) => {
     // ... kode sebelumnya ...
     function printCount() {
       console.log(
-        `Download post ${chalk.italic.blue(
-          `@${username}`
-        )}  (${chalk.blue(count)}/${chalk.italic.blue(
-          post.length
-        )}) post`
+        `Download post ${chalk.italic.blue(`@${username}`)}  (${chalk.blue(
+          count
+        )}/${chalk.italic.blue(post.length)}) post`
       );
     }
     // Loop melalui setiap post dan media untuk memulai unduhan
@@ -113,4 +111,4 @@ const bulkDownloader = async (username) => {
   }
 };
 // bulkDownloader('katarinabluu');
-export default bulkDownloader
+export default bulkDownloader;
