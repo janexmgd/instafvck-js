@@ -52,13 +52,10 @@ const createFile = async (filePath, data) => {
 export const checkIsExist = (filename, username) => {
   try {
     // const currentFilePath = new URL(import.meta.url).pathname;
-    const currentDir = process.cwd();
-    const filePath = path.resolve(currentDir, 'tmp', username, filename);
-    const checkFile = fsNonProm.existsSync(filePath);
-    if (checkFile) {
-      return true;
-    } else {
-      return false;
+    const filePath = path.join('tmp', username, `${username}.json`);
+    const dir = path.dirname(filePath);
+    if (!fsNonProm.existsSync(dir)) {
+      fsNonProm.mkdirSync(dir, { recursive: true });
     }
   } catch (error) {
     // return;
@@ -66,10 +63,12 @@ export const checkIsExist = (filename, username) => {
   }
 };
 export const createJson = async (username, data) => {
-  // const currentFilePath = new URL(import.meta.url).pathname;
-  const currentDir = process.cwd();
-  const folderPath = path.join(`${currentDir}`, 'tmp', `${username}`);
-  const filePath = path.join(folderPath, `${username}.json`);
-  await checkFolderExists(folderPath);
+  // const currentDir = process.cwd();
+  // const folderPath = path.join(`${currentDir}`, 'tmp', `${username}`);
+  const filePath = path.join('tmp', username, `${username}.json`);
+  const dir = path.dirname(filePath);
+  if (!fsNonProm.existsSync(dir)) {
+    fsNonProm.mkdirSync(dir, { recursive: true });
+  }
   await createFile(filePath, data);
 };

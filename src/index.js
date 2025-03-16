@@ -1,31 +1,19 @@
 import { main } from './main.js';
-import clear from 'clear';
 import chalk from 'chalk';
 import inquirer from 'inquirer';
+import boxen from 'boxen';
 export const runner = async () => {
-  clear();
-  console.clear()
-  //   console.log(chalk.underline(`ＩｎｓｔａＦｖｃｋ`));
-  console.log(
-    chalk.red(`
-██ ███    ██ ███████ ████████  █████  ███████ ██    ██  ██████ ██   ██            ██ ███████ 
-██ ████   ██ ██         ██    ██   ██ ██      ██    ██ ██      ██  ██             ██ ██      
-██ ██ ██  ██ ███████    ██    ███████ █████   ██    ██ ██      █████   █████      ██ ███████ 
-██ ██  ██ ██      ██    ██    ██   ██ ██       ██  ██  ██      ██  ██        ██   ██      ██ 
-██ ██   ████ ███████    ██    ██   ██ ██        ████    ██████ ██   ██        █████  ███████ 
-    `)
-  );
-  console.log(`
-  1. Save url Post to Json By UserName
-  2  Getting All post and obtain media link by username
-  3. Download all post by username (u must run task 2 first)
-`);
-  const input = await inquirer.prompt([
-    {
-      type: 'input',
-      name: 'taskNum',
-      message: 'What do you want',
-    },
-  ]);
-  main(input.taskNum);
+  process.stdout.write('\x1Bc');
+  console.log(boxen(chalk.italic('ＩｎｓｔａＦｖｃｋ'), { padding: 1 }));
+  const choices = [
+    { name: 'Get post and saved it to json', value: 1 },
+    { name: 'Download all posts by Username (requires Task 1)', value: 2 },
+  ];
+  const { input } = await inquirer.prompt({
+    type: 'list',
+    message: 'select service',
+    name: 'input',
+    choices,
+  });
+  main(input);
 };
