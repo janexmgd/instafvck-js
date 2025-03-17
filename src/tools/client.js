@@ -12,6 +12,16 @@ export const client = axios.create({
     cookie: cookieString,
   },
 });
+export const basicClient = axios.create({
+  headers: {
+    Accept: '*/*',
+    'X-CSRFToken': '',
+    'X-IG-App-ID': '936619743392459',
+    'X-ASBD-ID': '198387',
+    'X-IG-WWW-Claim': '0',
+    Referer: 'https://www.instagram.com/',
+  },
+});
 
 export const downloader = axios.create({
   headers: {

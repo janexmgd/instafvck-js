@@ -51,21 +51,24 @@ const createFile = async (filePath, data) => {
 };
 export const checkIsExist = (filename, username) => {
   try {
-    // const currentFilePath = new URL(import.meta.url).pathname;
-    const filePath = path.join('tmp', username, `${username}.json`);
+    const filePath = path.join(process.cwd(), 'tmp', username, filename);
     const dir = path.dirname(filePath);
     if (!fsNonProm.existsSync(dir)) {
       fsNonProm.mkdirSync(dir, { recursive: true });
     }
+    if (!fsNonProm.existsSync(filePath)) {
+      console.log(`File ${filename} does not exist.`);
+      return false;
+    }
+
+    console.log(`File ${filename} exists.`);
+    return true;
   } catch (error) {
-    // return;
     console.log(error);
   }
 };
-export const createJson = async (username, data) => {
-  // const currentDir = process.cwd();
-  // const folderPath = path.join(`${currentDir}`, 'tmp', `${username}`);
-  const filePath = path.join('tmp', username, `${username}.json`);
+export const createJson = async (username, data, filename) => {
+  const filePath = path.join('tmp', username, filename);
   const dir = path.dirname(filePath);
   if (!fsNonProm.existsSync(dir)) {
     fsNonProm.mkdirSync(dir, { recursive: true });

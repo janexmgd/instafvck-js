@@ -6,8 +6,10 @@ export const runner = async () => {
   process.stdout.write('\x1Bc');
   console.log(boxen(chalk.italic('ＩｎｓｔａＦｖｃｋ'), { padding: 1 }));
   const choices = [
-    { name: 'Get post and saved it to json', value: 1 },
-    { name: 'Download all posts by Username (requires Task 1)', value: 2 },
+    { name: 'Get post and saved it to json (need cookie)', value: 1 },
+    { name: 'Download all posts by Username ', value: 2 },
+    { name: 'Get reel feed and saved it to json ', value: 3 },
+    { name: 'Download all reels by username ', value: 4 },
   ];
   const { input } = await inquirer.prompt({
     type: 'list',

@@ -21,8 +21,11 @@ export const getUserPostLink = async (username) => {
       nextMaxId = post.next_max_id;
     }
     console.log(`Total posts fetched: ${posts.length}`);
-
-    await createJson(username, JSON.stringify(posts, null, 2));
+    await createJson(
+      username,
+      JSON.stringify(posts, null, 2),
+      `${username}_post.json`
+    );
   } catch (error) {
     console.log(error);
   }
