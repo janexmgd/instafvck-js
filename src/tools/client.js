@@ -1,5 +1,6 @@
 import axios from 'axios';
-import cookieString from '../utils/cookie.js';
+import 'dotenv/config.js';
+const { COOKIE } = process.env;
 // src https://github.com/mikf/gallery-dl/blob/master/gallery_dl/extractor/instagram.py#L608
 export const client = axios.create({
   headers: {
@@ -9,7 +10,7 @@ export const client = axios.create({
     'X-ASBD-ID': '198387',
     'X-IG-WWW-Claim': '0',
     Referer: 'https://www.instagram.com/',
-    cookie: cookieString,
+    cookie: COOKIE,
   },
 });
 export const basicClient = axios.create({

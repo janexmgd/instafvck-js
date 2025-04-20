@@ -2,8 +2,13 @@ import { main } from './main.js';
 import chalk from 'chalk';
 import inquirer from 'inquirer';
 import boxen from 'boxen';
+import 'dotenv/config';
 export const runner = async () => {
   process.stdout.write('\x1Bc');
+  if (!process.env.COOKIE) {
+    console.log(chalk.red.italic('Please set the COOKIE environment variable'));
+    return;
+  }
   console.log(boxen(chalk.italic('ＩｎｓｔａＦｖｃｋ'), { padding: 1 }));
   const choices = [
     { name: 'Get post and saved it to json (need cookie)', value: 1 },
